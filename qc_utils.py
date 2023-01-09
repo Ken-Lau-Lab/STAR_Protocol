@@ -8,7 +8,7 @@ from sklearn.preprocessing import normalize
 import glob
 
 def reorder_AnnData(AnnData, descending = True):
-    AnnData.obs['total_counts'] = AnnData.X.sum(axis=1)
+    AnnData.obs['total_counts'] = np.array(AnnData.X.sum(axis=1) )
     if(descending==True):
         AnnData = AnnData[np.argsort(AnnData.obs['total_counts'])[::-1]].copy()
         AnnData.uns['Order'] = 'Descending'
